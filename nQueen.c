@@ -28,19 +28,20 @@ bool isSaf(int chess[4][4], int r, int c)
         }
     }
 
-    printf("safe AT %d %d",r,c);
-    printf("\n");
-    if(r==3)
-    {
-       exit(0); 
-    }
+    // printf("safe AT %d %d",r,c);
+    // printf("\n");
+    // if(r==3)
+    // {
+    //    exit(0); 
+    // }
     return true;
 }
-void nQueen(int chess[4][4],char qsf[200], int row)
+void nQueen(int chess[4][4],char asf[200], int row)
 {
     if (row == 4)
     {
-   
+        printf("%s",asf);
+        printf("\n");
         return;
     }
     for (int col = 0; col < 4; col++)
@@ -48,8 +49,14 @@ void nQueen(int chess[4][4],char qsf[200], int row)
         if(isSaf(chess,row,col)==true)
         {
         chess[row][col] = 1;
-        nQueen(chess,qsf, row + 1);
-        printf("Final positions of queen is :\n");
+        char new_asf[200];
+        strcpy(new_asf, asf);
+        char indexc[20];
+        sprintf(indexc,"%d%d",row,col);
+        strcat(new_asf, indexc);
+        strcat(new_asf, "  ");
+        nQueen(chess,new_asf, row + 1);
+        // printf("Final positions of queen is :\n");
         chess[row][col] = 0;
         
         }
@@ -59,8 +66,5 @@ void main()
 {
     int chess[4][4] = {{0}};
     nQueen(chess,"", 0);
-
-
-
 
 }
