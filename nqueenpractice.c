@@ -57,28 +57,30 @@ void nqueen(int chess[4][4],char asf[200],int row)
         
     //     }
     // }
-
-    if(row==4)
-    {
+if(row==4)
+{
 printf("%s",asf);
 printf("\n");
 return;
-    }
-    for (int col = 0; col < 4; col++)
-    {
-      if(isSafe(chess,row,col)==true)
-      {
-        chess[row][col]=1;
-        char new_asf[200];
-        strcpy(new_asf,asf);
-        char newdata[200];
-        sprintf(newdata,"%d%d",row,col);
-        strcat(new_asf,newdata);
-        strcat(new_asf," ");
-        nqueen(chess,new_asf,row+1);
-        chess[row][col]=0;
-      }
-    }
+}
+for (int j = 0; j < 4; j++)
+{
+
+  if(isSafe(chess,row,j)==true)
+  {
+   chess[row][j]=1;
+   char new_asf[200];
+        strcpy(new_asf, asf);
+        char indexc[20];
+        sprintf(indexc,"%d%d",row,j);
+        strcat(new_asf, indexc);
+        strcat(new_asf, "  ");
+  nqueen(chess,new_asf,row+1);
+   chess[row][j]=0;
+}
+  }
+
+
     
         
   
