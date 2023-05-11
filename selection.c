@@ -8,28 +8,30 @@ void main()
 clock_t start,stop;
 clock_t start_b,stop_b;
 clock_t start_w,stop_w;
-
+int min;
     // ////////insertion sort
     
     
     start=clock();
     // ////////Selection
-    int arr[6]={10,11,12,13,45,78};
+    int arr[6]={10,1001,1882,13,45,78};
     int n=6;
-    for (int i = 0; i < n; i++)
+for (int i = 0; i < n; i++)
+{
+    min=i;
+    for (int j = i+1; j < n; j++)
     {
-        int min=i;
-        for(int j=i+1;j<n;j++)
-        {
-            if(arr[j]<arr[i])
-            {
-                min=j;
-            }
-        }
-       int x=arr[min];
-       arr[i]=arr[min];
-       arr[min]=x;
+       if(arr[j]<arr[min])
+       {
+        min=j;
+       }
     }
+    int temp=arr[i];
+    arr[i]=arr[min];
+    arr[min]=temp;
+    
+}
+
 
     stop=clock();
     float res=stop-start;
