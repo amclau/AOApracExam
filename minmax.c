@@ -1,53 +1,111 @@
 #include <stdio.h>
-#include <limits.h>
 
-void findMinMax(int arr[], int low, int high, int *min, int *max) {
-    int mid, minLeft, maxLeft, minRight, maxRight;
-    
-    // Base case for recursion, array has only one element
-    if (low == high) {
-        *min = *max = arr[low];
-        return;
-    }
-    
-    // Array has two elements
-    if (high == low + 1) {
-        if (arr[low] < arr[high]) {
-            *min = arr[low];
-            *max = arr[high];
-        } else {
-            *min = arr[high];
-            *max = arr[low];
+int arr[6]={1,100000,12,5,8,19};
+int min=0,max=0;
+void minmax(int low,int high)
+{int mid,min1,max1;
+if(low==high)
+{
+    min=max=arr[low];
+   
+
+}
+else
+{
+    if(low==high-1)
+    {
+        if(arr[low]>arr[high])
+        {
+            min=arr[high];
+            max=arr[low];
         }
-        return;
+        else{
+            min=arr[low];
+            max=arr[high];
+        }
     }
-    
-    // Array has more than two elements
-    mid = (low + high) / 2;
-    findMinMax(arr, low, mid, &minLeft, &maxLeft);
-    findMinMax(arr, mid + 1, high, &minRight, &maxRight);
-    
-    // Determine the minimum and maximum values in the array
-    if (minLeft < minRight) {
-        *min = minLeft;
-    } else {
-        *min = minRight;
+    else
+    {
+        mid=(low+high)/2;
+        minmax(low,mid);
+        max1=max;
+        min1=min;
+        minmax(mid+1,high);
+
+
+        
+        if(max1>max)
+        {
+            max=max1;
+        }
+        if(min1<min)
+        {
+            min=min1;
+        }
     }
-    if (maxLeft > maxRight) {
-        *max = maxLeft;
-    } else {
-        *max = maxRight;
-    }
+}
+}
+int main()
+{
+minmax(0,5);
+
+printf("%d\t%d",min,max);
+
+return 0;
 }
 
-int main() {
-    int arr[] = {1, 6, 2, 8, 3, 10, 4, 7, 5, 9};
-    int n = sizeof(arr) / sizeof(arr[0]);
-    int min, max;
+
+
+// #include <stdio.h>
+
+// int arr[6] = {6, 100000, 12, 5, 8, 19};
+// int min = 0, max = 0;
+
+// void minmax(int low, int high)
+// {
+//     int mid, min1, max1;
     
-    findMinMax(arr, 0, n - 1, &min, &max);
-    printf("Minimum element: %d\n", min);
-    printf("Maximum element: %d\n", max);
-    
-    return 0;
-}
+//     if (low == high)
+//     {
+//         min = max = arr[low];
+//     }
+//     else
+//     {
+//         if (low == high - 1)
+//         {
+//             if (arr[low] > arr[high])
+//             {
+//                 min = arr[high];
+//                 max = arr[low];
+//             }
+//             else
+//             {
+//                 min = arr[low];
+//                 max = arr[high];
+//             }
+//         }
+//         else
+//         {
+//             mid = (low + high) / 2;
+//             minmax(low, mid);
+//             max1 = max;
+//             min1 = min;
+//             minmax(mid + 1, high);
+//             if (max < max1)
+//             {
+//                 max = max1;
+//             }
+//             if (min > min1)
+//             {
+//                 min = min1;
+//             }
+//         }
+//     }
+// }
+
+// int main()
+// {
+//     minmax(0, 5);
+//     printf("%d\t%d", min, max);
+//     return 0;
+// }

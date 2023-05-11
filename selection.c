@@ -5,16 +5,14 @@
 void main()
 {
 
-clock_t start,stop;
-clock_t start_b,stop_b;
-clock_t start_w,stop_w;
+
 int min;
     // ////////insertion sort
     
     
-    start=clock();
+
     // ////////Selection
-    int arr[6]={10,1001,1882,13,45,78};
+    int arr[6]={78,10,11,12,13,45};
     int n=6;
 for (int i = 0; i < n; i++)
 {
@@ -33,10 +31,7 @@ for (int i = 0; i < n; i++)
 }
 
 
-    stop=clock();
-    float res=stop-start;
-    printf("\nAvg case CPU time =%f units\n",res);
-    start_b=clock();
+
     
     for(int i=0;i<6;i++)
     {

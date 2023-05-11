@@ -16,7 +16,7 @@ for (int j = i+1; j <= q; j++)
     }
 
 }
-int temp=a[i];
+        int temp=a[i];
         a[i]=a[p];
         a[p]=temp;
 return i;
