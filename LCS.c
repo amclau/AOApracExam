@@ -5,10 +5,7 @@ void main()
 {
 char s1[9]="deepgohil";
 char s2[8]="depgohil";
-int l1=4;
-int l2=3;
-int vscount=0;
-int hscount=0;
+
 int res[9][10] = {{0}};
 for (int r = 1; r < 9; r++)
 {

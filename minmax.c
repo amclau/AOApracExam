@@ -1,53 +1,53 @@
+#include <stdio.h>
+#include <limits.h>
 
-
-#include<stdio.h>
-#include<stdio.h>
-int max, min;
-int a[100];
-void maxmin(int i, int j)
-{
- int max1, min1, mid;
- if(i==j)
- {
-  max = min = a[i];
- }
- else
- {
-  if(i == j-1)
-  {
-   if(a[i] <a[j])
-   {
-    max = a[j];
-    min = a[i];
-   }
-   else
-   {
-    max = a[i];
-    min = a[j];
-   }
-  }
-  else
-  {
-   mid = (i+j)/2;
-   maxmin(i, mid);
-   max1 = max; min1 = min;
-   maxmin(mid+1, j);
-   if(max <max1)
-    max = max1;
-   if(min > min1)
-    min = min1;
-  }
- }
+void findMinMax(int arr[], int low, int high, int *min, int *max) {
+    int mid, minLeft, maxLeft, minRight, maxRight;
+    
+    // Base case for recursion, array has only one element
+    if (low == high) {
+        *min = *max = arr[low];
+        return;
+    }
+    
+    // Array has two elements
+    if (high == low + 1) {
+        if (arr[low] < arr[high]) {
+            *min = arr[low];
+            *max = arr[high];
+        } else {
+            *min = arr[high];
+            *max = arr[low];
+        }
+        return;
+    }
+    
+    // Array has more than two elements
+    mid = (low + high) / 2;
+    findMinMax(arr, low, mid, &minLeft, &maxLeft);
+    findMinMax(arr, mid + 1, high, &minRight, &maxRight);
+    
+    // Determine the minimum and maximum values in the array
+    if (minLeft < minRight) {
+        *min = minLeft;
+    } else {
+        *min = minRight;
+    }
+    if (maxLeft > maxRight) {
+        *max = maxLeft;
+    } else {
+        *max = maxRight;
+    }
 }
-int main ()
-{
- int i, num;
 
-
- max = a[0];
- min = a[0];
- maxmin(1, num);
- printf ("Minimum element in an array : %d\n", min);
- printf ("Maximum element in an array : %d\n", max);
- return 0;
+int main() {
+    int arr[] = {1, 6, 2, 8, 3, 10, 4, 7, 5, 9};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    int min, max;
+    
+    findMinMax(arr, 0, n - 1, &min, &max);
+    printf("Minimum element: %d\n", min);
+    printf("Maximum element: %d\n", max);
+    
+    return 0;
 }

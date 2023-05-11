@@ -13,6 +13,10 @@ void sumofsubset(int arr[], int index, int sos, int tar,char asf[1000])
         }
         return;
     }
+    if(sos>tar)
+    {
+        return;
+    }
 
     char new_asf[200];
     strcpy(new_asf, asf);
@@ -29,6 +33,6 @@ void sumofsubset(int arr[], int index, int sos, int tar,char asf[1000])
 void main()
 {
     int arr[] = {10, 20, 30, 40, 50, 60};
-    int target = 60;
+    int target = 10;
     sumofsubset(arr, 0, 0, target," ");
 }
